@@ -64,22 +64,22 @@ router.post('/dogs', ctx => {
 
 // update
 router.put('/dogs/:id', ctx => {
-    const dog = dogs.findIndex(item => item.id === Number(ctx.params.id))
-    const validation = validate(ctx.request.body, schema)
-    if (!dog) {
-        ctx.status = 404
-        return
-    }
-    if (!validation.valid) {
-        ctx.status = 400
-        ctx.body = {
-            errors: validation.errors,
-        }
-        return
-    }
-    dogs.splice(dog, 1, ctx.request.body)
-    ctx.body = dogs
+  const dog = dogs.findIndex(item => item.id === Number(ctx.params.id))
+  if (dog < 0) {
+    ctx.status = 404
+    return
+  }
 
+  const validation = validate(ctx.request.body, schema)
+  if (!validation.valid) {
+    ctx.status = 400
+    ctx.body = {
+      errors: validation.errors,
+    }
+    return
+  }
+  dogs.splice(dog, 1, ctx.request.body)
+  ctx.body = dogs
 })
 
 // delete
@@ -90,9 +90,8 @@ router.delete('/dogs/:id', ctx => {
     ctx.status = 404
     return
   }
-    dogs.splice(dog, 1)
-    ctx.body = dogs
-
+  dogs.splice(dog, 1)
+  ctx.body = dogs
 })
 
 module.exports = router.routes()
