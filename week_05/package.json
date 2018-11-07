@@ -1,0 +1,38 @@
+{
+  "name": "week_04",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "lint": "eslint .",
+    "dev": "nodemon src/app.js | pino-pretty"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "crypto": "^1.0.1",
+    "dotenv": "^6.1.0",
+    "jsonschema": "^1.2.4",
+    "jsonwebtoken": "^8.3.0",
+    "kcors": "^2.2.2",
+    "knex": "^0.15.2",
+    "koa": "^2.6.1",
+    "koa-body": "^4.0.4",
+    "koa-compress": "^3.0.0",
+    "koa-router": "^7.4.0",
+    "objection": "^1.4.0",
+    "pg": "^7.6.0",
+    "pino": "^5.8.0",
+    "pino-pretty": "^2.2.3",
+    "ramda": "^0.25.0",
+    "util": "^0.11.1"
+  },
+  "devDependencies": {
+    "@strv/eslint-config-javascript": "^8.3.1",
+    "eslint": "^5.7.0",
+    "nodemon": "^1.18.5"
+  }
+}
