@@ -7,7 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
     "lint": "eslint .",
-    "dev": "nodemon src/app.js | pino-pretty"
+    "dev": "nodemon src/app.js | pino-pretty",
+    "migrate:make": "knex migrate:make --knexfile ./src/database/knexfile.js",
+    "db:migrate": "knex migrate:latest --knexfile ./src/database/knexfile.js",
+    "db:rollback": "knex migrate:rollback --knexfile ./src/database/knexfile.js",
+    "infra": "docker-compose up -d",
+    "infra:stop": "docker-compose down"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +33,7 @@
     "pino": "^5.8.0",
     "pino-pretty": "^2.2.3",
     "ramda": "^0.25.0",
+    "sequelize": "^4.41.2",
     "util": "^0.11.1"
   },
   "devDependencies": {

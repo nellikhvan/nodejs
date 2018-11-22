@@ -1,6 +1,19 @@
 'use strict'
 
 const pkg = require('../../package')
+const Sequelize = require('sequelize')
+const database = new Sequelize('nodejs', 'nellikhvan', 'nellikhvan', {
+    host: 'localhost',
+    dialect: 'postgres',
+    operatorsAliases: false,
+
+    pool: {
+        min: process.env.DATABASE_POOL_MIN || 0,
+        max: process.env.DATABASE_POOL_MAX || 5,
+        acquire: 30000,
+        idle: 10000
+    },
+})
 
 module.exports = env => ({
     env,
@@ -45,13 +58,5 @@ module.exports = env => ({
         stdout: true,
         minLevel: 'debug',
     },
-    database: {
-        client: 'pg',
-        connection: process.env.DATABASE_URL
-        || 'postgres://postgres@localhost:5432/nodejs-nights-local',
-        pool: {
-            min: process.env.DATABASE_POOL_MIN || 0,
-            max: process.env.DATABASE_POOL_MAX || 5,
-        },
-    },
+    database: database,
 })
